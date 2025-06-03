@@ -16,4 +16,19 @@ So how do surgeons perceive the situation of the area to be operated on? In addi
 
 * We mentioned the boundary parameter earlier. What is it? Let's understand it with the work of UCSD:
 ![](image/boundary.png)
+Shinde, Nikhil Uday, et al. "Jiggle: An active sensing framework for boundary parameters estimation in deformable surgical environments." arXiv preprint arXiv:2405.09743 (2024).  
 Simply, boundary parameters refer to whether two or more organizations are adhered to each other, or exactly where and to what extent they are connected. Its significance in surgery is not only to discover the position to be cut, but also to achieve more flexible and efficient operation. For example, in cholecystectomy, doctors often do not use two instruments to separate the liver and the gallbladder respectively. Instead, they only need one instrument to separate the gallbladder and push it backward. This is that after clarifying the boundary parameters between the liver and the gallbladder, one operation is sufficient to fix the two organs.
+
+## How to do?
+
+This section demonstrates how to obtain the monocular visual deformation field. The following original snippet is from the Comprehensive Robotic Cholecystectomy Dataset (CRCD).
+![](image/B1_cut2.gif)
+
+The feature tracking model is used to track the dense feature points within the frame. We tried the effect of cotracker3 (https://github.com/facebookresearch/co-tracker). It can be understood in the form of optical flow, that is, tracking the movement of each voxel point. Several tracked points together constitute the deformation field. Or let's not introduce the concept of the field, but just take a look at how these discrete points move. Obviously, some points come from a rigid body, while some points on the tissue move randomly in a small range until the instrument comes into contact with the tissue.
+![](image/track.gif)
+
+![](image/animation.gif)
+
+![](image/cholecyst_spatracker_pred_track.gif)
+
+## What can be used for?
