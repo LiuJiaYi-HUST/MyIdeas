@@ -9,13 +9,17 @@ In laparoscopic surgery, often only one lens extends into the surgical area, and
 So how do surgeons perceive the situation of the area to be operated on? In addition to their prior surgical experience, they attempted to touch the tissues, observe their deformations, and conduct depth positioning, mechanical property analysis, boundary parameter analysis, etc. During this process, the surgical instruments are the objects controlled by the doctor. Their appearance in the laparoscope is completely in line with the doctor's operational intuition, that is, they always move along with the operation. And doctors further help perceive information from the transfer relationship between the image of the instrument and the image of the tissue. More specific examples:
 
 * Two-dimensional images have no depth information. To locate the depth distance of the tissue, the doctor slowly penetrates the instrument until deformation occurs at the junction of the instrument and the tissue in the image, that is, the instrument sinks into the tissue. Then it can be determined that the depth at the end of the instrument at this moment is the depth of the tissue.
+
 ![](image/touch.png)
 
 * The electric hook is used to burn separated tissues. After the doctor operates the electric hook to hook the tissue, they will step on the electric pedal. Then, the part of the tissue that has been hooked will be damaged by the hot electric hook. So how do doctors determine if an organization has been hooked? Obviously, they observed whether the tissue near the electrohook in the two-dimensional image moved along with the electrohook. If the movement is completely synchronized, that is precisely the part held by the electric hook. If it is partially synchronized, then it might be a transitional part. If it has nothing to do with the movement of the electric hook at all, then it must not have been involved.
+
 ![](image/hook.png)
 
 * We mentioned the boundary parameter earlier. What is it? Let's understand it with the work of UCSD:
+
 ![](image/boundary.png)
+
 Shinde, Nikhil Uday, et al. "Jiggle: An active sensing framework for boundary parameters estimation in deformable surgical environments." arXiv preprint arXiv:2405.09743 (2024).  
 Simply, boundary parameters refer to whether two or more organizations are adhered to each other, or exactly where and to what extent they are connected. Its significance in surgery is not only to discover the position to be cut, but also to achieve more flexible and efficient operation. For example, in cholecystectomy, doctors often do not use two instruments to separate the liver and the gallbladder respectively. Instead, they only need one instrument to separate the gallbladder and push it backward. This is that after clarifying the boundary parameters between the liver and the gallbladder, one operation is sufficient to fix the two organs.
 
@@ -46,5 +50,7 @@ Here are a few research points simply listed. I believe it is far more wonderful
 * How to sense tissue depth during laparoscopic surgery? The contact is judged by the movement relationship of the feature points, thereby obtaining the absolute depth of the contact point tissue. Combined with the depth estimation model, the estimation calibration is completed using the depth of discrete contact points. During the operation, contacts occur frequently. Each contact is utilized to dynamically adjust the depth estimate to achieve a more accurate estimation. Or, let robots touch tissues on their own......
 
 * How did Jackie Chan do it?
+
 ![](image/Chan.gif)
+
 People can often directly use a tool they have never met before. Besides the accumulated prior experience, the movement relationship of various parts of the tool during the operation process is also crucial. We can always clarify the working mode of the tool components after trying to operate them a few times. If robots can do it too, does it mean that they can quickly become familiar with various tools and achieve a breakthrough in universality......
