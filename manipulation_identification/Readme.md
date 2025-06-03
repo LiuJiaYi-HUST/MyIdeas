@@ -22,13 +22,29 @@ Simply, boundary parameters refer to whether two or more organizations are adher
 ## How to do?
 
 This section demonstrates how to obtain the monocular visual deformation field. The following original snippet is from the Comprehensive Robotic Cholecystectomy Dataset (CRCD).
+
 ![](image/B1_cut2.gif)
 
 The feature tracking model is used to track the dense feature points within the frame. We tried the effect of cotracker3 (https://github.com/facebookresearch/co-tracker). It can be understood in the form of optical flow, that is, tracking the movement of each voxel point. Several tracked points together constitute the deformation field. Or let's not introduce the concept of the field, but just take a look at how these discrete points move. Obviously, some points come from a rigid body, while some points on the tissue move randomly in a small range until the instrument comes into contact with the tissue.
+
 ![](image/track.gif)
 
+After that, we also combined the monocular depth estimation model Metric3D (https://github.com/YvanYin/Metric3D) to obtain the depth value of each feature point being tracked (this step is not necessary. We only introduced a rough depth estimation to verify the calibration effect of this method in depth estimation). From this, we can obtain a 3 (2) -dimensional point cloud sequence. Subsequently, a graph can be constructed, and the motion relationship of each node is the key to revealing all the above-mentioned perceptual objects.
+
 ![](image/animation.gif)
+
+To specifically target valuable information, we attempt to incorporate an image segmentation model, adding a mask to the objects we need to manipulate and perceive. In this way, fewer feature points are tracked, it runs faster and is more focused.
 
 ![](image/cholecyst_spatracker_pred_track.gif)
 
 ## What can be used for?
+
+If time permits, I really hope to create a new folder to explain my application concepts one by one. The movement relationship between each voxel we were just discussing can definitely enhance the cognitive level of robot operation.
+
+Here are a few research points simply listed. I believe it is far more wonderful than these.
+
+* How to sense tissue depth during laparoscopic surgery? The contact is judged by the movement relationship of the feature points, thereby obtaining the absolute depth of the contact point tissue. Combined with the depth estimation model, the estimation calibration is completed using the depth of discrete contact points. During the operation, contacts occur frequently. Each contact is utilized to dynamically adjust the depth estimate to achieve a more accurate estimation. Or, let robots touch tissues on their own......
+
+* How did Jackie Chan do it?
+![](image/Chan.gif)
+People can often directly use a tool they have never met before. Besides the accumulated prior experience, the movement relationship of various parts of the tool during the operation process is also crucial. We can always clarify the working mode of the tool components after trying to operate them a few times. If robots can do it too, does it mean that they can quickly become familiar with various tools and achieve a breakthrough in universality......
